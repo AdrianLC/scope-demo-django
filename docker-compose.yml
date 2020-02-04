@@ -7,8 +7,7 @@ services:
     command: ["scope-run", "gunicorn", "demo.wsgi", "-b", "0.0.0.0:8000"]
     environment:
       - CI
-      - SCOPE_APIKEY
-      - SCOPE_API_ENDPOINT
+      - SCOPE_DSN
       - SCOPE_SERVICE=frontend
       - REDIS_HOST=redis
     links:
@@ -20,8 +19,7 @@ services:
     command: ["scope-run", "celery", "-A", "demo", "worker", "-P", "solo", "-l", "debug"]
     environment:
       - CI
-      - SCOPE_APIKEY
-      - SCOPE_API_ENDPOINT
+      - SCOPE_DSN
       - SCOPE_SERVICE=worker
       - REDIS_HOST=redis
     links:
@@ -36,8 +34,7 @@ services:
     command: ["scope-run", "./manage.py", "test", "-p", "tests_worker.py"]
     environment:
       - CI
-      - SCOPE_APIKEY
-      - SCOPE_API_ENDPOINT
+      - SCOPE_DSN
       - SCOPE_SERVICE=worker
       - REDIS_HOST=redis
       - JENKINS_URL
@@ -58,8 +55,7 @@ services:
     command: ["scope-run", "./manage.py", "test", "-p", "tests_frontend.py"]
     environment:
       - CI
-      - SCOPE_APIKEY
-      - SCOPE_API_ENDPOINT
+      - SCOPE_DSN
       - SCOPE_SERVICE=frontend
       - FRONTEND_HOST=demo-django-frontend
       - REDIS_HOST=redis
