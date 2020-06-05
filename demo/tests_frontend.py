@@ -51,7 +51,7 @@ class BrokenFixedTests(TestCase):
 fixed = random.choice((0, 1)) == 0
 
 
-for n in range(100_000):
+for n in range(1000):
     name = f'test_{n}'
 
     def func(self):
